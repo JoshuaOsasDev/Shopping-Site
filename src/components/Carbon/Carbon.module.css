@@ -1,0 +1,17 @@
+.carbon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--Rose100);
+  border-radius: 0.5rem;
+  height: 3rem;
+}
+
+.carbonImg {
+  height: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+.carbon p {
+  font-size: 0.8rem;
+}

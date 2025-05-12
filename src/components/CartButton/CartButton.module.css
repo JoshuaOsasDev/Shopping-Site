@@ -1,0 +1,20 @@
+.cartButton {
+  background-color: var(--Rose50);
+  border: 1px solid var(--Rose400);
+
+  position: absolute;
+  top: 16rem;
+  left: 3.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10rem;
+  border-radius: 2.5rem;
+  height: 2.5rem;
+}
+
+.cartButton .cartImage {
+  width: 20px;
+  margin: 0;
+}

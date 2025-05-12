@@ -1,0 +1,14 @@
+.confirm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: var(--Red);
+  margin-top: 1rem;
+  text-align: center;
+  color: var(--Rose50);
+  font-weight: 600;
+  height: 3rem;
+  border-radius: 3rem;
+  cursor: pointer;
+}

@@ -1,0 +1,49 @@
+.cartButtonClick {
+  border: 1px solid var(--Rose400);
+  background-color: var(--Red);
+
+  position: absolute;
+  top: 16rem;
+  left: 4rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 10rem;
+  border-radius: 2.5rem;
+  height: 2.5rem;
+}
+
+.cartButtonClick span {
+  color: var(--Rose50);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  height: 0.6rem;
+  width: 0.6rem;
+  border: 1px solid var(--Rose50);
+  border-radius: 100%;
+  padding: 0.1rem;
+  margin: 0.8rem;
+
+  /* background-color: transparent; */
+  padding: 0.2rem;
+
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.iconWrapper:hover {
+  background-color: white;
+}
+
+.iconWrapper:hover svg path {
+  fill: black; /* Optional: flip icon color for visibility */
+}
+
+.cartButtonClick button {
+  background: none;
+  border: none;
+}
