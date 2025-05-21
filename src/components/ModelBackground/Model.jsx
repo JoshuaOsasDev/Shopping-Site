@@ -1,52 +1,50 @@
-import { useShopping } from "../../../context/ShoppingContext";
+import { cloneElement, createContext, useContext, useState } from "react";
 import Confirm from "../Carbon/Confirm";
 import styles from "./Model.module.css";
 
-function Model() {
-  const { confirmedCart, confirmedTotal, getItemCount, reset } = useShopping();
-  console.log(confirmedCart, "cart", confirmedTotal);
+const ModelContext = createContext();
+function Model({ children }) {
+  const [isOpen, setIsOpen] = useState("");
+  const Open = setIsOpen;
+  const Close = () => setIsOpen("");
+
   return (
-    <div className={styles.confirm}>
-      <div className={styles.confirmBackground}>
-        <img src="./assets/images/icon-order-confirmed.svg" alt="Confirmed" />
-        <h1>Order Confirmed</h1>
-        <p className={styles.firstP}>We hope you enjoy your food!</p>
+    <ModelContext.Provider value={{ isOpen, Open, Close }}>
+      {children}
+    </ModelContext.Provider>
+  );
+}
 
-        <div className={styles.orderedProducts}>
-          {confirmedCart.map((item) => (
-            <div className={styles.productOrderedSummary} key={item.id}>
-              <img
-                className={styles.summaryImg}
-                src={item.image.desktop} // Assuming you have image path in each item
-                alt={item.name}
-              />
-              <div>
-                <p className={styles.nameOrderedProduct}>{item.name}</p>
-                <div>
-                  <span className={styles.pickedAmount}>
-                    {getItemCount(item.id)}x
-                  </span>
-                  <span className={styles.pickedPrice}>
-                    @ ${item.price.toFixed(2)}
-                  </span>
-                </div>
-              </div>
-              <p className={styles.total}>
-                ${(item.price * getItemCount(item.id)).toFixed(2)}
-              </p>
-            </div>
-          ))}
-          <hr />
-          <div className={styles.orderTotal}>
-            <p>Order Total</p>
-            <p>${confirmedTotal.toFixed(2)}</p>
-          </div>
-        </div>
+function Header({ children, opens, onClick }) {
+  const { Open } = useContext(ModelContext);
 
-        <Confirm onClick={() => reset()}>Start new Order</Confirm>
+  return (
+    <div>
+      {cloneElement(children, {
+        onClick: () => {
+          if (onClick) onClick();
+          Open(opens);
+        },
+      })}
+    </div>
+  );
+}
+
+function Window({ children, name }) {
+  const { isOpen, Close } = useContext(ModelContext);
+  if (isOpen !== name) return null;
+  return (
+    <div className={styles.confirm} onClick={() => Close()}>
+      <div
+        className={styles.confirmBackground}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {children}
       </div>
     </div>
   );
 }
+
+(Model.Header = Header), (Model.Window = Window);
 
 export default Model;

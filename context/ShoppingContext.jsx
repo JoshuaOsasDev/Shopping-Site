@@ -80,11 +80,13 @@ const ShoppingProvider = function ({ children }) {
       price: details.price,
     }));
   }, [shoppingDetails]);
+
   const reset = useCallback(() => {
     setItemCounts({});
     setToggledItems({});
     setIsOpenModel(null);
   }, []);
+
   const value = useMemo(() => {
     return {
       shoppingDetails,
